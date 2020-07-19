@@ -1,0 +1,30 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-16.04'
+
+container: fedora:latest
+
+steps:
+- script: |
+    dnf check-update
+    dnf upgrade -y
+    dnf install gcc.x86_64 make.x86_64 gcc-c++ libpng-devel.x86_64 gtest.x86_64 gtest-devel.x86_64 libpng.x86_64 -y
+  displayName: 'Set Up'
+  name: 'Setup'
+  workingDirectory: './'
+  failOnStderr: false
+
+- script: |
+    make generatebuild
+    make
+  displayName: 'Build'
+  name: 'Build'
+  workingDirectory: './'
+  failOnStderr: false
