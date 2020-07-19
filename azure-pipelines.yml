@@ -13,9 +13,9 @@ container: fedora:latest
 
 steps:
 - script: |
-    dnf check-update
-    dnf upgrade -y
-    dnf install gcc.x86_64 make.x86_64 gcc-c++ libpng-devel.x86_64 gtest.x86_64 gtest-devel.x86_64 libpng.x86_64 -y
+    sudo dnf check-update
+    sudo dnf upgrade -y
+    sudo dnf install gcc.x86_64 make.x86_64 gcc-c++ libpng-devel.x86_64 gtest.x86_64 gtest-devel.x86_64 libpng.x86_64 -y
   displayName: 'Set Up'
   name: 'Setup'
   workingDirectory: './'
