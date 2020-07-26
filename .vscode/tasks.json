@@ -6,23 +6,29 @@
         {
             "type": "shell",
             "label": "make",
-			"command": "/usr/bin/make",
+			"command": "/usr/bin/cmake",
 			"options": {
 				"cwd": "${workspaceRoot}"
 			},
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+			"args": [
+				"--build",
+				"./debug/"
+			]
         }, {
             "type": "shell",
             "label": "clean",
-			"command": "/usr/bin/make",
+			"command": "/usr/bin/cmake",
 			"options": {
 				"cwd": "${workspaceRoot}"
 			},
 			"args": [
-				"clean"
+				"--build",
+				"./debug/",
+				"--clean-first"
 			]
 		}
     ]

@@ -15,15 +15,16 @@ steps:
 - script: |
     sudo dnf check-update
     sudo dnf upgrade -y
-    sudo dnf install gcc.x86_64 make.x86_64 gcc-c++ libpng-devel.x86_64 gtest.x86_64 gtest-devel.x86_64 libpng.x86_64 -y
+    sudo dnf install gcc.x86_64 make.x86_64 gcc-c++ libpng-devel.x86_64 gtest.x86_64 gtest-devel.x86_64 libpng.x86_64 cmake.x86_64 global.x86_64 doxygen.x86_64 -y
+    chmod +x ./setup.sh
+    ./setup.sh
   displayName: 'Set Up'
   name: 'Setup'
   workingDirectory: './'
   failOnStderr: false
 
 - script: |
-    make generatebuild
-    make
+    cmake --build ./debug/ --clean-first
   displayName: 'Build'
   name: 'Build'
   workingDirectory: './'
